@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project PartyUp！ — メンバー募集</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+  :root {
+    --cream:    #FDF6F0;
+    --lavender: #EDE0F7;
+    --rose:     #FFE0EA;
+    --peach:    #FFE9D8;
+    --gold:     #F5E195;
+    --mint:     #D9F5ED;
+    --sky:      #DCF0FA;
+    --purple:   #7B4FA6;
+    --purple-light: #A97DC8;
+    --text:     #3D2040;
+    --text-mid: #6B4E71;
+    --text-light:#9B7DA8;
+    --white:    #FFFFFF;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f9eeff 0%, #fde8f0 30%, #fff4e2 60%, #e8f6ff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,160,230,0.18) 0%, transparent 70%);
+    top: -100px; right: -150px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,200,180,0.18) 0%, transparent 70%);
+    bottom: -80px; left: -100px;
+    pointer-events: none;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--purple-light);
+    opacity: 0.25;
+    animation: twinkle 3s infinite alternate;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.1; transform: scale(0.8); }
+    to   { opacity: 0.4; transform: scale(1.2); }
+  }
+
+  .hero-badge {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--purple);
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .hero-title span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.3em;
+    letter-spacing: 0.55em;
+    color: var(--purple-light);
+    font-weight: 400;
+    margin-top: 22px;
+  }
+
+  .hero-tagline {
+    margin-top: 36px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-tagline strong {
+    font-weight: 500;
+    color: var(--purple);
+  }
+
+  .hero-sub {
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+
+  .hero-scroll {
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.4s forwards;
+  }
+  .hero-scroll span {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--purple-light), transparent);
+    margin: 0 auto;
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 100px 24px; }
+
+  .inner { max-width: 900px; margin: 0 auto; }
+  .inner-wide { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 2;
+    max-width: 640px;
+  }
+
+  /* ─── PAIN SECTION ─── */
+  .pain-section {
+    background: linear-gradient(180deg, var(--cream) 0%, #f5eeff 100%);
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    margin-top: 56px;
+  }
+
+  .pain-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 4px 30px rgba(120,80,160,0.07);
+    border: 1px solid rgba(180,140,210,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+  .pain-card:nth-child(1)::before { background: linear-gradient(90deg, #C9A0E8, #F2ACCA); }
+  .pain-card:nth-child(2)::before { background: linear-gradient(90deg, #F2ACCA, #FFCBA0); }
+  .pain-card:nth-child(3)::before { background: linear-gradient(90deg, #FFCBA0, #A0D4F5); }
+
+  .pain-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(120,80,160,0.13);
+  }
+
+  .pain-icon {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .pain-persona {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .pain-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .pain-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 2;
+  }
+
+  .pain-card .answer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(180,140,210,0.3);
+    font-size: 0.88rem;
+    color: var(--purple);
+    font-style: italic;
+    font-family: 'Noto Serif JP', serif;
+    line-height: 1.8;
+  }
+
+  /* ─── DATA SECTION ─── */
+  .data-section {
+    background: linear-gradient(180deg, #f5eeff 0%, #fde8f0 60%, #fff4e2 100%);
+    text-align: center;
+  }
+
+  .data-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, #C9A0E8, #F2ACCA, #FFCBA0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1.15;
+    padding-bottom: 0.1em;
+    margin: 20px 0 10px;
+    overflow: visible;
+  }
+
+  .data-label {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    letter-spacing: 0.1em;
+    margin-bottom: 56px;
+  }
+
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto 48px;
+  }
+
+  @media (max-width: 600px) {
+    .domains-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .domain-chip {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 22px 12px 16px;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    border: 1px solid rgba(180,140,210,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 12px rgba(120,80,160,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .domain-chip:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(120,80,160,0.14); }
+  .domain-chip img, .domain-chip svg { display:block; margin:0 auto 4px; }
+  .domain-chip .d-name { font-size: 0.8rem; font-weight: 500; }
+  .domain-chip .d-badge {
+    font-size: 0.65rem;
+    background: #FDE8F0;
+    color: #C06090;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .data-insight {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px 40px;
+    box-shadow: 0 4px 30px rgba(120,80,160,0.08);
+    border: 1px solid rgba(180,140,210,0.15);
+  }
+  .data-insight p {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 2;
+  }
+  .data-insight strong { color: var(--purple); }
+
+  /* ─── VISION SECTION ─── */
+  .vision-section {
+    background: var(--white);
+  }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .vision-card {
+    padding: 36px 28px;
+    border-radius: 16px;
+    text-align: center;
+  }
+  .vision-card:nth-child(1) { background: linear-gradient(135deg, #F9F0FF, #F5E8FF); }
+  .vision-card:nth-child(2) { background: linear-gradient(135deg, #FFF0F5, #FFE5EE); }
+  .vision-card:nth-child(3) { background: linear-gradient(135deg, #FFF5EC, #FFE8D5); }
+
+  .vision-card .v-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+  .vision-card h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .vision-card p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: linear-gradient(135deg, #EDE0F7 0%, #FFE0EA 50%, #FFE9D8 100%);
+    text-align: center;
+  }
+
+  .cta-section .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+  }
+
+  .cta-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 56px 48px;
+    max-width: 600px;
+    margin: 48px auto 0;
+    box-shadow: 0 8px 50px rgba(120,80,160,0.1);
+  }
+
+  .cta-card p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    margin-bottom: 36px;
+    line-height: 2;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(180,140,210,0.3);
+    border-radius: 12px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: #FDFAFF;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--purple-light);
+    background: #fff;
+  }
+  .form-group textarea { height: 100px; resize: none; }
+
+  .btn-primary {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #B07FD4, #E08FAA);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 12px;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  .form-note {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* ─── NAME PROPOSAL BOX ─── */
+  .name-proposal {
+    background: linear-gradient(135deg, #f5e8ff, #fff0f5);
+    border: 1.5px dashed rgba(180,140,210,0.5);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 48px auto 0;
+    max-width: 700px;
+    text-align: center;
+  }
+  .name-proposal .np-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .name-proposal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--purple);
+    letter-spacing: 0.15em;
+  }
+  .name-proposal .np-reading {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    letter-spacing: 0.2em;
+    margin-top: 4px;
+  }
+  .name-proposal .np-meaning {
+    margin-top: 14px;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+  .name-proposal .np-alt {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, var(--purple-light), transparent);
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+  .divider.center { margin: 24px auto; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+  footer span { color: rgba(200,160,220,0.7); }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+
+  <p class="hero-badge">Project PartyUp！ — Member Recruitment</p>
+
+  <h1 class="hero-title">
+    PartyUp！
+    <span>PROJECT</span>
+  </h1>
+
+  <p class="hero-tagline">
+    あなたの<strong>不思議</strong>を、もう一人で抱えなくていい。
+  </p>
+  <p class="hero-sub">
+    「パーティを組む」——9つの扉が、今開かれようとしています。
+  </p>
+
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════ PAIN ══════════ -->
+<section class="pain-section">
+  <div class="inner">
+    <span class="section-label">Is this you?</span>
+    <h2 class="section-title">あなたも、こんな気持ちを<br>抱えていませんか？</h2>
+    <p class="section-lead">
+      才能も情熱もある。でも、どこか行き詰まっている——そんなあなたに、この場所は作られました。
+    </p>
+    <div class="divider"></div>
+
+    <div class="pain-grid">
+
+      <div class="pain-card">
+        <span class="pain-icon">🔮</span>
+        <span class="pain-persona">Fortune Teller</span>
+        <h3>個人で占いを続けているけれど、<br>もう少し先に進みたい</h3>
+        <p>
+          お客様には喜んでもらえる。でも、発信しても届かない。単価を上げる勇気もない。SNSを頑張っても埋もれてしまう——そんな閉塞感を感じていませんか？
+        </p>
+        <p class="answer">
+          「一人でやる」から卒業するとき。あなたの力は、仲間と掛け合わさることで何倍にも輝けます。
+        </p>
+      </div>
+
+      <div class="pain-card">
+        <span class="pain-icon">🌸</span>
+        <span class="pain-persona">Idol / Entertainer</span>
+        <h3>アイドルとして走ってきたけど、<br>本当にやりたいことが違う気がしている</h3>
+        <p>
+          可愛いだけじゃない、もっと「自分らしいもの」を表現したい。でも路線変更は怖い。オカルト好きなこと、正直に言えていない——。
+        </p>
+        <p class="answer">
+          あなたの個性は「武器」になります。好きなものを全部持ち込んでいい場所が、ここにあります。
+        </p>
+      </div>
+
+      <div class="pain-card">
+        <span class="pain-icon">🌙</span>
+        <span class="pain-persona">Hidden Occult Fan</span>
+        <h3>学校でも職場でも、<br>この趣味は話せずにいる</h3>
+        <p>
+          霊能力があるかもしれない。怪談が大好き。スターシードという概念に共鳴する——でも「引かれそう」で誰にも言えない日常。
+        </p>
+        <p class="answer">
+          「変わってる」は才能の入り口。その感性を面白いと思う人たちが、この場所に集まっています。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ DATA ══════════ -->
+<section class="data-section">
+  <div class="inner">
+    <span class="section-label">The Research</span>
+    <h2 class="section-title">調査でわかった、驚くべき事実</h2>
+    <div class="divider center"></div>
+
+    <div class="data-number">8 / 9</div>
+    <p class="data-label">ジャンル中8つに、女性ユニットが存在しない</p>
+
+    <div class="domains-grid">
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="gh_bg" cx="45%" cy="35%"><stop offset="0%" stop-color="#FAF0FF"/><stop offset="100%" stop-color="#DEC8F8"/></radialGradient><radialGradient id="gh_gl" cx="50%" cy="50%"><stop offset="0%" stop-color="#EDD8FF" stop-opacity="0.7"/><stop offset="100%" stop-color="#EDD8FF" stop-opacity="0"/></radialGradient><filter id="gh_f"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
+  <circle cx="50" cy="52" r="36" fill="url(#gh_gl)" filter="url(#gh_f)"/>
+  <path d="M22 52 Q22 18 50 18 Q78 18 78 52 L78 82 L70 74 L62 82 L54 74 L46 82 L38 74 L30 82 L22 82 Z" fill="url(#gh_bg)" stroke="#C9A0E8" stroke-width="1.8" stroke-linejoin="round"/>
+  <ellipse cx="38" cy="48" rx="7" ry="8.5" fill="#3D2060"/>
+  <ellipse cx="62" cy="48" rx="7" ry="8.5" fill="#3D2060"/>
+  <circle cx="40.5" cy="44.5" r="3" fill="white"/>
+  <circle cx="64.5" cy="44.5" r="3" fill="white"/>
+  <path d="M43 60 Q50 65 57 60" stroke="#9B6AAC" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="58" rx="6" ry="4" fill="#FFB8D0" opacity="0.5"/>
+  <ellipse cx="70" cy="58" rx="6" ry="4" fill="#FFB8D0" opacity="0.5"/>
+  <ellipse cx="28" cy="52" rx="4" ry="7" fill="#EDD8FF" opacity="0.55" transform="rotate(-20,28,52)"/>
+  <ellipse cx="72" cy="52" rx="4" ry="7" fill="#EDD8FF" opacity="0.55" transform="rotate(20,72,52)"/>
+  <polygon points="12,28 13.8,22 15.6,28 22,28 17,32 19,38 13.8,35 8.6,38 10.6,32 5.6,28" fill="#F5E195" opacity="0.85"/>
+  <circle cx="82" cy="22" r="3" fill="#C9A0E8" opacity="0.8"/>
+  <circle cx="83.5" cy="22" r="1.4" fill="white" opacity="0.7"/>
+  <circle cx="15" cy="72" r="2" fill="#F2ACCA" opacity="0.75"/>
+  <polygon points="88,55 89.4,50 90.8,55 96,55 92,58 93.5,63 89.4,60.5 85.3,63 86.8,58 82.8,55" fill="#F2ACCA" opacity="0.7"/>
+</svg>
+        <span class="d-name">怪談</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="ir_g" cx="42%" cy="42%"><stop offset="0%" stop-color="#C8A0F8"/><stop offset="55%" stop-color="#8050C0"/><stop offset="100%" stop-color="#5030A0"/></radialGradient><radialGradient id="eye_bg" cx="50%" cy="50%"><stop offset="0%" stop-color="#F0E8FF"/><stop offset="100%" stop-color="#DDD0F8"/></radialGradient><filter id="eye_f"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
+  <ellipse cx="50" cy="52" rx="40" ry="28" fill="#E8E0FF" filter="url(#eye_f)" opacity="0.5"/>
+  <path d="M10 52 Q50 18 90 52 Q50 86 10 52 Z" fill="url(#eye_bg)" stroke="#C0A0EC" stroke-width="1.5"/>
+  <ellipse cx="50" cy="52" rx="18" ry="18" fill="url(#ir_g)"/>
+  <ellipse cx="50" cy="52" rx="10" ry="10" fill="#1E1030"/>
+  <circle cx="44" cy="46" r="4.5" fill="white" opacity="0.75"/>
+  <circle cx="54" cy="50" r="1.8" fill="white" opacity="0.4"/>
+  <line x1="50" y1="10" x2="50" y2="18" stroke="#C9A0E8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="30" y1="14" x2="33" y2="21" stroke="#C9A0E8" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="70" y1="14" x2="67" y2="21" stroke="#C9A0E8" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="16" y1="30" x2="22" y2="35" stroke="#C9A0E8" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="84" y1="30" x2="78" y2="35" stroke="#C9A0E8" stroke-width="1.5" stroke-linecap="round"/>
+  <polygon points="82,18 83.5,13 85,18 90,18 86.5,21.5 88,27 83.5,24 79,27 80.5,21.5 77,18" fill="#F5E195" opacity="0.9"/>
+  <polygon points="14,62 15.3,57.5 16.6,62 21,62 17.8,65 19,70 14,67 9,70 10.2,65 7,62" fill="#C9A0E8" opacity="0.75"/>
+  <circle cx="78" cy="72" r="3" fill="#F2ACCA" opacity="0.8"/>
+  <circle cx="79.5" cy="72" r="1.5" fill="white" opacity="0.6"/>
+</svg>
+        <span class="d-name">都市伝説</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="cr_g" cx="38%" cy="32%"><stop offset="0%" stop-color="#F8EEFF"/><stop offset="45%" stop-color="#C898F0"/><stop offset="100%" stop-color="#7040B0"/></radialGradient><radialGradient id="cr_gw" cx="50%" cy="50%"><stop offset="0%" stop-color="#EDD8FF" stop-opacity="0.8"/><stop offset="100%" stop-color="#EDD8FF" stop-opacity="0"/></radialGradient><radialGradient id="cr_sh" cx="35%" cy="30%"><stop offset="0%" stop-color="white" stop-opacity="0.6"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><filter id="cr_f"><feGaussianBlur stdDeviation="3"/></filter></defs>
+  <circle cx="50" cy="44" r="34" fill="url(#cr_gw)" filter="url(#cr_f)"/>
+  <path d="M34 72 Q50 66 66 72 L62 82 Q50 86 38 82 Z" fill="#C090E0" stroke="#A870CC" stroke-width="1.2"/>
+  <path d="M36 68 Q50 63 64 68 L66 72 Q50 66 34 72 Z" fill="#D0A8EC"/>
+  <circle cx="50" cy="44" r="28" fill="url(#cr_g)" stroke="#B080D8" stroke-width="1.5"/>
+  <circle cx="50" cy="44" r="28" fill="url(#cr_sh)"/>
+  <polygon points="50,28 52,38 62,38 54,44 57,54 50,48 43,54 46,44 38,38 48,38" fill="#F5E195" opacity="0.9"/>
+  <circle cx="36" cy="52" r="3.5" fill="white" opacity="0.22"/>
+  <circle cx="60" cy="36" r="2" fill="white" opacity="0.25"/>
+  <polygon points="10,22 11.5,17 13,22 18,22 14.5,25.5 16,31 11.5,28 7,31 8.5,25.5 5,22" fill="#F5E195" opacity="0.85"/>
+  <polygon points="88,60 89.3,55.5 90.6,60 95,60 91.8,63 93,68 88,65 83,68 84.2,63 81,60" fill="#F2ACCA" opacity="0.8"/>
+  <circle cx="82" cy="20" r="2.5" fill="#C9A0E8" opacity="0.8"/>
+  <circle cx="83.2" cy="20" r="1.2" fill="white" opacity="0.65"/>
+  <circle cx="14" cy="60" r="2" fill="#F2ACCA" opacity="0.7"/>
+</svg>
+        <span class="d-name">占い</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="mo_g" cx="38%" cy="32%"><stop offset="0%" stop-color="#FFFCE8"/><stop offset="60%" stop-color="#F8D858"/><stop offset="100%" stop-color="#E8B830"/></radialGradient><radialGradient id="mo_gw" cx="50%" cy="50%"><stop offset="0%" stop-color="#FFF5CC" stop-opacity="0.7"/><stop offset="100%" stop-color="#FFF5CC" stop-opacity="0"/></radialGradient><filter id="mo_f"><feGaussianBlur stdDeviation="4"/></filter></defs>
+  <circle cx="46" cy="50" r="36" fill="url(#mo_gw)" filter="url(#mo_f)"/>
+  <path d="M58 16 A34 34 0 1 0 58 84 A22 22 0 1 1 58 16 Z" fill="url(#mo_g)" stroke="#E8C040" stroke-width="1.5"/>
+  <circle cx="36" cy="34" r="4.5" fill="white" opacity="0.3"/>
+  <circle cx="32" cy="52" r="2.5" fill="white" opacity="0.25"/>
+  <line x1="48" y1="16" x2="44" y2="27" stroke="#F5E195" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="44" cy="27" r="3.5" fill="#F5E195" stroke="#E8C040" stroke-width="1"/>
+  <line x1="56" y1="18" x2="50" y2="28" stroke="#F5E195" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="50" cy="28" r="2.5" fill="#F5E195" opacity="0.85"/>
+  <polygon points="82,14 83.5,9 85,14 90,14 86.5,17.5 88,23 83.5,20 79,23 80.5,17.5 77,14" fill="#C9A0E8" opacity="0.85"/>
+  <polygon points="14,54 15.3,49.5 16.6,54 21,54 17.8,57 19,62 14,59 9,62 10.2,57 7,54" fill="#F5E195" opacity="0.8"/>
+  <circle cx="80" cy="52" r="4" fill="#FFE0EA" opacity="0.8"/>
+  <circle cx="80" cy="52" r="2.2" fill="white" opacity="0.6"/>
+  <circle cx="18" cy="28" r="2.5" fill="#F5E195" opacity="0.75"/>
+</svg>
+        <span class="d-name">霊能・スピリチュアル</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="ss_g" cx="50%" cy="50%"><stop offset="0%" stop-color="#E0D0FF"/><stop offset="50%" stop-color="#9070D0"/><stop offset="100%" stop-color="#5040A0"/></radialGradient><radialGradient id="ss_gw" cx="50%" cy="50%"><stop offset="0%" stop-color="#C8B0FF" stop-opacity="0.6"/><stop offset="100%" stop-color="#C8B0FF" stop-opacity="0"/></radialGradient><radialGradient id="ss_in" cx="40%" cy="40%"><stop offset="0%" stop-color="#B0E8FF"/><stop offset="100%" stop-color="#6090D8"/></radialGradient><filter id="ss_f"><feGaussianBlur stdDeviation="3.5"/></filter></defs>
+  <circle cx="50" cy="50" r="40" fill="url(#ss_gw)" filter="url(#ss_f)"/>
+  <polygon points="50,8 57,36 86,36 63,54 72,82 50,65 28,82 37,54 14,36 43,36" fill="url(#ss_g)" stroke="#A888E0" stroke-width="1.5"/>
+  <polygon points="50,8 57,36 86,36 63,54 72,82 50,65 28,82 37,54 14,36 43,36" fill="url(#ss_in)" opacity="0.25"/>
+  <polygon points="50,22 54.5,36 70,36 58,45 62.5,59 50,51 37.5,59 42,45 30,36 45.5,36" fill="white" opacity="0.2"/>
+  <circle cx="50" cy="8" r="3.5" fill="#F5E195" stroke="#E8C040" stroke-width="1"/>
+  <circle cx="86" cy="36" r="3" fill="#F2ACCA" stroke="#E090B0" stroke-width="1"/>
+  <circle cx="72" cy="82" r="3.5" fill="#A0D4FF" stroke="#6099D0" stroke-width="1"/>
+  <circle cx="28" cy="82" r="3" fill="#C9A0E8" stroke="#9060C0" stroke-width="1"/>
+  <circle cx="14" cy="36" r="3.5" fill="#F5E195" stroke="#E8C040" stroke-width="1"/>
+  <circle cx="24" cy="14" r="2" fill="white" opacity="0.8"/>
+  <circle cx="78" cy="12" r="1.5" fill="#F2ACCA" opacity="0.8"/>
+  <circle cx="88" cy="62" r="2" fill="#C9A0E8" opacity="0.75"/>
+  <circle cx="12" cy="68" r="1.5" fill="#A0D4FF" opacity="0.7"/>
+</svg>
+        <span class="d-name">スターシード</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" style="border-color:rgba(160,200,140,0.4);background:linear-gradient(135deg,#f0fff4,#fff);">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><radialGradient id="fx_g" cx="50%" cy="42%"><stop offset="0%" stop-color="#FFE8CC"/><stop offset="100%" stop-color="#F0A860"/></radialGradient><radialGradient id="fx_fc" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFF5EE"/><stop offset="100%" stop-color="#FFE0C8"/></radialGradient></defs>
+  <path d="M14 80 L22 48 L12 14 L36 32 Q50 22 64 32 L88 14 L78 48 L86 80 Q70 95 50 96 Q30 95 14 80 Z" fill="url(#fx_g)" stroke="#E09050" stroke-width="1.3"/>
+  <path d="M20 76 L26 50 L18 20 L36 34 Q50 24 64 34 L82 20 L74 50 L80 76 Q66 90 50 92 Q34 90 20 76 Z" fill="url(#fx_fc)" opacity="0.85"/>
+  <ellipse cx="36" cy="56" rx="8.5" ry="9.5" fill="white"/>
+  <ellipse cx="64" cy="56" rx="8.5" ry="9.5" fill="white"/>
+  <ellipse cx="36" cy="57" rx="5" ry="6.5" fill="#2A1840"/>
+  <ellipse cx="64" cy="57" rx="5" ry="6.5" fill="#2A1840"/>
+  <circle cx="33.5" cy="53.5" r="2.5" fill="white"/>
+  <circle cx="61.5" cy="53.5" r="2.5" fill="white"/>
+  <ellipse cx="50" cy="66" rx="4" ry="3" fill="#E87060"/>
+  <path d="M44 70 Q50 75 56 70" stroke="#C85040" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="64" rx="6" ry="3.5" fill="#FFB8D0" opacity="0.55"/>
+  <ellipse cx="70" cy="64" rx="6" ry="3.5" fill="#FFB8D0" opacity="0.55"/>
+  <polygon points="50,26 51.5,22 53,26 57,26 54,28.5 55,33 50,30 45,33 46,28.5 43,26" fill="#F5E195" opacity="0.85"/>
+  <polygon points="88,28 89.3,23.5 90.6,28 95,28 91.8,31 93,36 88,33 83,36 84.2,31 81,28" fill="#C9A0E8" opacity="0.75"/>
+  <circle cx="12" cy="58" r="2.5" fill="#F5E195" opacity="0.7"/>
+</svg>
+        <span class="d-name">妖怪</span>
+        <span class="d-badge" style="background:#e0f5e0;color:#4a8c4a;">妖怪ネットワーク</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><linearGradient id="wh_g" x1="0.3" y1="0" x2="0.7" y2="1"><stop offset="0%" stop-color="#9860C8"/><stop offset="100%" stop-color="#4828A0"/></linearGradient><linearGradient id="wh_br" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7848B8"/><stop offset="100%" stop-color="#5030A0"/></linearGradient><filter id="wh_f"><feGaussianBlur stdDeviation="3"/></filter></defs>
+  <ellipse cx="50" cy="74" r="22" fill="#C9A0E8" opacity="0.25" filter="url(#wh_f)"/>
+  <ellipse cx="50" cy="72" rx="34" ry="9" fill="url(#wh_br)" stroke="#8848C0" stroke-width="1.2"/>
+  <path d="M26 72 Q32 44 50 10 Q68 44 74 72 Z" fill="url(#wh_g)" stroke="#7848B8" stroke-width="1.5"/>
+  <path d="M30 72 Q36 48 50 16" fill="none" stroke="#C090E8" stroke-width="0.8" opacity="0.4"/>
+  <path d="M70 72 Q64 48 50 16" fill="none" stroke="#C090E8" stroke-width="0.8" opacity="0.4"/>
+  <path d="M38 22 Q42 34 48 38 Q42 32 36 36" stroke="#F5E195" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <circle cx="36" cy="36" r="4" fill="#F5E195" stroke="#E8C040" stroke-width="1"/>
+  <circle cx="60" cy="24" r="3" fill="#F2ACCA" stroke="#D080A0" stroke-width="0.8"/>
+  <polygon points="82,20 83.5,15 85,20 90,20 86.5,23.5 88,29 83.5,26 79,29 80.5,23.5 77,20" fill="#F5E195" opacity="0.9"/>
+  <polygon points="15,46 16.3,41.5 17.6,46 22,46 18.8,49 20,54 15,51 10,54 11.2,49 8,46" fill="#C9A0E8" opacity="0.8"/>
+  <circle cx="82" cy="60" r="3" fill="#F2ACCA" opacity="0.8"/>
+  <circle cx="83.4" cy="60" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="18" cy="26" r="2" fill="#F5E195" opacity="0.7"/>
+  <line x1="50" y1="10" x2="46" y2="6" stroke="#F5E195" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="50" y1="10" x2="54" y2="6" stroke="#F5E195" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="50" cy="5" r="2" fill="#F5E195" opacity="0.8"/>
+</svg>
+        <span class="d-name">魔女</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><linearGradient id="lt_g" x1="0.3" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="#FFFBE8"/><stop offset="50%" stop-color="#F8D840"/><stop offset="100%" stop-color="#E0B020"/></linearGradient><radialGradient id="lt_gw" cx="50%" cy="50%"><stop offset="0%" stop-color="#FFFBE0" stop-opacity="0.8"/><stop offset="100%" stop-color="#FFFBE0" stop-opacity="0"/></radialGradient><filter id="lt_f"><feGaussianBlur stdDeviation="4"/></filter></defs>
+  <circle cx="50" cy="50" r="38" fill="url(#lt_gw)" filter="url(#lt_f)"/>
+  <ellipse cx="50" cy="50" rx="30" ry="30" fill="#FFFBE0" opacity="0.18"/>
+  <polygon points="58,8 34,50 50,50 40,92 70,44 52,44" fill="url(#lt_g)" stroke="#E8B820" stroke-width="2" stroke-linejoin="round"/>
+  <polygon points="58,8 34,50 50,50 40,92 70,44 52,44" fill="white" opacity="0.22"/>
+  <polygon points="74,18 75.5,13 77,18 82,18 78.5,21.5 80,27 75.5,24 71,27 72.5,21.5 69,18" fill="#C9A0E8" opacity="0.9"/>
+  <polygon points="16,30 17.3,25.5 18.6,30 23,30 19.8,33 21,38 16,35 11,38 12.2,33 9,30" fill="#A0D8FF" opacity="0.85"/>
+  <circle cx="22" cy="72" r="4" fill="#F5E195" stroke="#E8C040" stroke-width="1"/>
+  <circle cx="22" cy="72" r="2.2" fill="white" opacity="0.7"/>
+  <circle cx="80" cy="66" r="3" fill="#F2ACCA" stroke="#E090B0" stroke-width="0.8"/>
+  <circle cx="81.2" cy="66" r="1.4" fill="white" opacity="0.6"/>
+  <circle cx="20" cy="18" r="2.5" fill="#F2ACCA" opacity="0.7"/>
+  <circle cx="84" cy="34" r="1.8" fill="#F5E195" opacity="0.7"/>
+</svg>
+        <span class="d-name">超能力</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+      <div class="domain-chip" >
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="140" height="140" style="display:block;margin:0 auto 6px">
+  <defs><linearGradient id="sh_g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF9898"/><stop offset="100%" stop-color="#D04040"/></linearGradient></defs>
+  <rect x="38" y="44" width="8" height="48" rx="4" fill="url(#sh_g)"/>
+  <rect x="54" y="44" width="8" height="48" rx="4" fill="url(#sh_g)"/>
+  <rect x="30" y="40" width="40" height="8" rx="4" fill="url(#sh_g)"/>
+  <path d="M20 36 Q50 18 80 36 L78 40 Q50 24 22 40 Z" fill="#FF7070" stroke="#CC3030" stroke-width="1"/>
+  <rect x="32" y="44" width="36" height="5" rx="2.5" fill="#FF8888"/>
+  <line x1="50" y1="20" x2="50" y2="28" stroke="#F5E195" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="50" cy="17" r="4" fill="#F5E195" stroke="#E8C040" stroke-width="1.2"/>
+  <circle cx="26" cy="30" r="6" fill="#FFB8D0" opacity="0.75"/>
+  <circle cx="26" cy="30" r="4" fill="#FF90B0" opacity="0.5"/>
+  <circle cx="24" cy="28" r="1.8" fill="white" opacity="0.65"/>
+  <circle cx="74" cy="30" r="5" fill="#FFB8D0" opacity="0.7"/>
+  <circle cx="74" cy="30" r="3" fill="#FF90B0" opacity="0.5"/>
+  <circle cx="72.5" cy="28.5" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="14" cy="52" r="5" fill="#FFD0E8" opacity="0.65"/>
+  <circle cx="14" cy="52" r="3" fill="#FFB0D0" opacity="0.5"/>
+  <circle cx="86" cy="54" r="4" fill="#FFD0E8" opacity="0.6"/>
+  <circle cx="86" cy="54" r="2.2" fill="#FFB0D0" opacity="0.5"/>
+  <polygon points="12,18 13.3,13.5 14.6,18 19,18 15.8,21 17,26 12,23 7,26 8.2,21 5,18" fill="#F5E195" opacity="0.85"/>
+  <circle cx="88" cy="72" r="2.5" fill="#C9A0E8" opacity="0.75"/>
+  <circle cx="16" cy="74" r="2" fill="#F2ACCA" opacity="0.7"/>
+</svg>
+        <span class="d-name">寺社仏閣</span>
+        <span class="d-badge" style="background:#FDE8F0;color:#C06090;">ユニット不在</span>
+      </div>
+    </div>
+
+    <div class="data-insight">
+      <p>
+        怪談・都市伝説・占い・スピリチュアル・スターシード・妖怪・魔女・超能力・寺社仏閣——<br>
+        独自調査で<strong>9ジャンル中8つに女性ユニットが存在しない</strong>ことが判明。<br>
+        （妖怪ジャンルには盟友ユニット「妖怪ネットワーク」が存在します）<br><br>
+        それぞれに才能ある個人はいる。でも、誰も「チーム」を作っていなかった。<br>
+        これは空白ではなく、<strong>最大のチャンス</strong>です。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ VISION ══════════ -->
+<section class="vision-section">
+  <div class="inner">
+    <span class="section-label">Our Vision</span>
+    <h2 class="section-title">PartyUp！が目指す3つのこと</h2>
+    <div class="divider"></div>
+
+    <div class="vision-grid">
+      <div class="vision-card">
+        <span class="v-icon">🤝</span>
+        <h4>個人戦から<br>チーム戦へ</h4>
+        <p>
+          一人で抱えていたジャンルの壁を越えて、違うバックグラウンドを持つ仲間と組む。掛け合わさることで、一人では届かなかった場所へ届く。
+        </p>
+      </div>
+      <div class="vision-card">
+        <span class="v-icon">🌍</span>
+        <h4>日本から世界へ<br>通じるコンテンツ</h4>
+        <p>
+          K-POPが証明したように、女性ユニットの文化発信力は圧倒的。妖怪・怪談・スピリチュアルは、海外にはない日本オリジナルの資産です。
+        </p>
+      </div>
+      <div class="vision-card">
+        <span class="v-icon">🌸</span>
+        <h4>陽キャもオタクも<br>全員が主役</h4>
+        <p>
+          難しい界隈のルールは不要。好きな気持ちと自分らしさがあれば十分。民度が高く、誰もが安心して自分を出せるコミュニティを作ります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ PROJECT NAME ══════════ -->
+<section style="background: var(--cream); padding: 60px 24px;">
+  <div class="inner" style="text-align:center;">
+    <span class="section-label">About the Project Name</span>
+    <h2 class="section-title">プロジェクト名について</h2>
+    <div class="name-proposal">
+      <span class="np-label">Project Name</span>
+      <h2>PartyUp！</h2>
+      <p class="np-reading">パーティアップ</p>
+      <div class="divider center"></div>
+      <p class="np-meaning">
+        「PartyUp！」の由来は、RPGやゲームの世界で使われる<br>
+        <strong>「パーティを組む（Party Up）」</strong>という言葉です。<br><br>
+        一人では倒せなかったボスも、それぞれの特技を持つ仲間が集まれば越えられる——<br>
+        占い師、元アイドル、怪談好き、霊能者、魔女……<br>
+        異なる「力」を持つ女性たちが集い、チームとして動き出す。<br><br>
+        そのワクワク感と、参加する気軽さ・楽しさを込めて名づけました。<br>
+        <strong>さあ、パーティを組もう。</strong>
+      </p>
+      <p class="np-alt">
+        ※ ユニット正式名称は今後メンバーと共に決定します。あなたのアイデアも大歓迎です。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-section">
+  <div class="inner">
+    <span class="section-label">Join Us</span>
+    <h2 class="section-title">
+      あなたの不思議が、<br>誰かの「やっと会えた」になる。
+    </h2>
+    <div class="divider center"></div>
+    <p class="section-lead" style="margin: 0 auto; text-align:center;">
+      まずは「気になる」だけで大丈夫。パーティに加わる最初の一歩は小さくていい。<br>
+      メンバー候補として登録いただいた方に、詳細情報をお届けします。
+    </p>
+
+    <div class="cta-card">
+      <p>
+        あなたのバックグラウンドや得意なこと、今の状況を教えてください。<br>
+        スペックよりも「気持ち」を大切にしています。
+      </p>
+
+      <div class="form-group">
+        <label>お名前（ニックネーム可）</label>
+        <input type="text" placeholder="例：さくら / MIKA">
+      </div>
+      <div class="form-group">
+        <label>メールアドレス</label>
+        <input type="email" placeholder="連絡先メールアドレス">
+      </div>
+      <div class="form-group">
+        <label>いちばん近いバックグラウンドを教えてください</label>
+        <select>
+          <option value="">選んでください</option>
+          <option>占い師・タロット・スピリチュアル系</option>
+          <option>アイドル・タレント・エンタメ系</option>
+          <option>怪談・ホラー・都市伝説好き</option>
+          <option>妖怪・魔女・神話・民俗学系</option>
+          <option>スターシード・宇宙・覚醒系</option>
+          <option>超能力・霊能力・感覚系</option>
+          <option>その他（自由記入）</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>今の気持ち・ひとことメッセージ（自由）</label>
+        <textarea placeholder="「ずっとこういう場所を探していた」「まだ迷ってるけど気になった」なんでも大歓迎です"></textarea>
+      </div>
+
+      <button class="btn-primary">気になる❣</button>
+      <p class="form-note">
+        ※ 登録後すぐに勧誘・販売などはありません。<br>
+        詳細情報のご案内のみお送りします。いつでも退会できます。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p><span>Project PartyUp！</span> &nbsp;—&nbsp; Coming Soon 2025</p>
+  <p style="margin-top:8px;">あなたの不思議を、もう一人で抱えなくていい。</p>
+</footer>
+
+
+<script>
+  // Generate decorative stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 4 + 2;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pain-card, .vision-card, .domain-chip, .data-insight, .name-proposal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
